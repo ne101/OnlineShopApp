@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">OnlineShopApp</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="count">(%s)</string>
+    <string name="price">%s ₽</string>
+    <string name="disc">-%d%%</string>
+    <string name="available">Доступно для заказа %s %s</string>
+    <string name="feedback_count">%s %s</string>
+</resources>
