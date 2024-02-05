@@ -4,23 +4,23 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.onlineshopapp.domain.entities.ItemEntity
-import com.example.onlineshopapp.domain.usecase.AddFavouriteItemUseCase
-import com.example.onlineshopapp.domain.usecase.GetFavouriteItemUseCase
-import com.example.onlineshopapp.domain.usecase.GetFavouriteItemsUseCase
-import com.example.onlineshopapp.domain.usecase.RemoveFavouriteItemUseCase
+import com.example.domain.domain.entities.ItemEntity
+import com.example.domain.domain.usecase.AddFavouriteItemUseCase
+import com.example.domain.domain.usecase.GetFavouriteItemUseCase
+import com.example.domain.domain.usecase.GetFavouriteItemsUseCase
+import com.example.domain.domain.usecase.RemoveFavouriteItemUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class FavouriteItemsViewModel @Inject constructor(
-    private val getFavouriteItemsUseCase: GetFavouriteItemsUseCase,
-    private val addFavouriteItemUseCase: AddFavouriteItemUseCase,
-    private val removeFavouriteItemUseCase: RemoveFavouriteItemUseCase,
-    private val getFavouriteItemUseCase: GetFavouriteItemUseCase
+    private val getFavouriteItemsUseCase: com.example.domain.domain.usecase.GetFavouriteItemsUseCase,
+    private val addFavouriteItemUseCase: com.example.domain.domain.usecase.AddFavouriteItemUseCase,
+    private val removeFavouriteItemUseCase: com.example.domain.domain.usecase.RemoveFavouriteItemUseCase,
+    private val getFavouriteItemUseCase: com.example.domain.domain.usecase.GetFavouriteItemUseCase
 ) : ViewModel() {
-    private val _favouriteItems = MutableLiveData<List<ItemEntity>>()
-    val favouriteItems: LiveData<List<ItemEntity>>
+    private val _favouriteItems = MutableLiveData<List<com.example.domain.domain.entities.ItemEntity>>()
+    val favouriteItems: LiveData<List<com.example.domain.domain.entities.ItemEntity>>
         get() = _favouriteItems
 
     init {
@@ -31,14 +31,14 @@ class FavouriteItemsViewModel @Inject constructor(
 
 
 
-    fun addItemInDB(item: ItemEntity) {
+    fun addItemInDB(item: com.example.domain.domain.entities.ItemEntity) {
         viewModelScope.launch(Dispatchers.IO) {
             addFavouriteItemUseCase.invoke(item)
             _favouriteItems.postValue(getFavouriteItemsUseCase.invoke().items)
         }
     }
 
-    fun removeItemFromDB(item: ItemEntity) {
+    fun removeItemFromDB(item: com.example.domain.domain.entities.ItemEntity) {
         viewModelScope.launch(Dispatchers.IO) {
             removeFavouriteItemUseCase.invoke(item)
             _favouriteItems.postValue(getFavouriteItemsUseCase.invoke().items)

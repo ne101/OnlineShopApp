@@ -16,7 +16,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.onlineshopapp.databinding.FilterCardBinding
 import com.example.onlineshopapp.databinding.FragmentCatalogBinding
-import com.example.onlineshopapp.domain.entities.ItemEntity
+import com.example.domain.domain.entities.ItemEntity
 import com.example.onlineshopapp.presentation.adapter.ItemsAdapter
 import com.example.onlineshopapp.presentation.adapter.OnClickListener
 import com.example.onlineshopapp.presentation.app.OnlineShopApplication
@@ -189,21 +189,21 @@ class CatalogFragment : Fragment(), OnClickListener {
         component.inject(this)
     }
 
-    override fun onHeartClickAdd(item: ItemEntity) {
+    override fun onHeartClickAdd(item: com.example.domain.domain.entities.ItemEntity) {
         viewModel.addItemInDB(item)
     }
 
-    override fun checkItemInDBOrNot(item: ItemEntity): Boolean {
+    override fun checkItemInDBOrNot(item: com.example.domain.domain.entities.ItemEntity): Boolean {
         val favouriteItems = viewModel.favouriteItems.value
         return favouriteItems?.any { it.id == item.id } ?: false
     }
 
-    override fun onItemClick(item: ItemEntity) {
+    override fun onItemClick(item: com.example.domain.domain.entities.ItemEntity) {
         findNavController().navigate(CatalogFragmentDirections.actionCatalogFragmentToDetailInfoFragment(item.id))
     }
 
 
-    override fun onHeartClickRemove(item: ItemEntity) {
+    override fun onHeartClickRemove(item: com.example.domain.domain.entities.ItemEntity) {
         viewModel.removeItemFromDB(item)
     }
 }

@@ -1,7 +1,7 @@
 package com.example.onlineshopapp.presentation.app
 
 import android.app.Application
-import com.example.onlineshopapp.data.di.DaggerApplicationComponent
+import com.example.onlineshopapp.di.DaggerApplicationComponent
 
 class OnlineShopApplication : Application() {
 

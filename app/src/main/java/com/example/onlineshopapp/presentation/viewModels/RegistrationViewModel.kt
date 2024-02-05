@@ -3,16 +3,16 @@ package com.example.onlineshopapp.presentation.viewModels
 import android.graphics.Color
 import android.widget.EditText
 import androidx.lifecycle.*
-import com.example.onlineshopapp.domain.entities.PersonEntity
-import com.example.onlineshopapp.domain.usecase.AddPersonInfoUseCase
-import com.example.onlineshopapp.domain.usecase.GetPersonInfoUseCase
+import com.example.domain.domain.entities.PersonEntity
+import com.example.domain.domain.usecase.AddPersonInfoUseCase
+import com.example.domain.domain.usecase.GetPersonInfoUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class RegistrationViewModel @Inject constructor(
-    private val addPersonInfoUseCase: AddPersonInfoUseCase,
-    private val getPersonInfoUseCase: GetPersonInfoUseCase
+    private val addPersonInfoUseCase: com.example.domain.domain.usecase.AddPersonInfoUseCase,
+    private val getPersonInfoUseCase: com.example.domain.domain.usecase.GetPersonInfoUseCase
 ) : ViewModel() {
 
     private val _nameValid = MutableLiveData<Boolean>()
@@ -21,8 +21,8 @@ class RegistrationViewModel @Inject constructor(
 
     private val _phoneValid = MutableLiveData<Boolean>()
 
-    private val _person = MutableLiveData<PersonEntity>()
-    val person: LiveData<PersonEntity>
+    private val _person = MutableLiveData<com.example.domain.domain.entities.PersonEntity>()
+    val person: LiveData<com.example.domain.domain.entities.PersonEntity>
         get() = _person
 
     private val _name = MutableLiveData<String>()
@@ -65,7 +65,7 @@ class RegistrationViewModel @Inject constructor(
         }
     }
 
-    fun addPerson(personEntity: PersonEntity) {
+    fun addPerson(personEntity: com.example.domain.domain.entities.PersonEntity) {
         viewModelScope.launch(Dispatchers.IO) {
             addPersonInfoUseCase.invoke(personEntity)
         }

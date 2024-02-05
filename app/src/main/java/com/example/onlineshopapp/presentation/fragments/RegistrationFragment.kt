@@ -13,7 +13,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.onlineshopapp.R
 import com.example.onlineshopapp.databinding.FragmentRegistrationBinding
-import com.example.onlineshopapp.domain.entities.PersonEntity
+import com.example.domain.domain.entities.PersonEntity
 import com.example.onlineshopapp.presentation.app.OnlineShopApplication
 import com.example.onlineshopapp.presentation.viewModels.RegistrationViewModel
 import com.example.onlineshopapp.presentation.viewModels.ViewModelFactory
@@ -67,6 +67,8 @@ class RegistrationFragment : Fragment() {
 
     private fun addCustomToolBar() {
         binding.customToolbar.tvScreenName.text = "Вход"
+        binding.customToolbar.ivBack.visibility = View.INVISIBLE
+        binding.customToolbar.ivShare.visibility = View.INVISIBLE
     }
 
     private fun nameValid() {
@@ -178,7 +180,7 @@ class RegistrationFragment : Fragment() {
 
     private fun launchNextScreen() {
         binding.button.setOnClickListener {
-            val person = PersonEntity(
+            val person = com.example.domain.domain.entities.PersonEntity(
                 0,
                 viewModel.name.value.toString(),
                 viewModel.secondName.value.toString(),

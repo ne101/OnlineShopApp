@@ -20,7 +20,7 @@ import com.example.onlineshopapp.databinding.FirstPartDetailInfoBinding
 import com.example.onlineshopapp.databinding.FragmentDetailInfoBinding
 import com.example.onlineshopapp.databinding.SecondPartDetailInfoBinding
 import com.example.onlineshopapp.databinding.ThirdPartDetailInfoBinding
-import com.example.onlineshopapp.domain.entities.ItemEntity
+import com.example.domain.domain.entities.ItemEntity
 import com.example.onlineshopapp.presentation.adapter.ItemsAdapter
 import com.example.onlineshopapp.presentation.app.OnlineShopApplication
 import com.example.onlineshopapp.presentation.viewModels.CatalogViewModel
@@ -65,7 +65,7 @@ class DetailInfoFragment : Fragment() {
         backPressed()
     }
 
-    private fun addDetailInfo(item: ItemEntity) {
+    private fun addDetailInfo(item: com.example.domain.domain.entities.ItemEntity) {
         val infoBinding = FirstPartDetailInfoBinding.inflate(
             layoutInflater,
             binding.llDetailInfo,
@@ -140,7 +140,7 @@ class DetailInfoFragment : Fragment() {
 
     }
 
-    private fun addStars(item: ItemEntity, infoBinding: FirstPartDetailInfoBinding) {
+    private fun addStars(item: com.example.domain.domain.entities.ItemEntity, infoBinding: FirstPartDetailInfoBinding) {
         val emptyStar =
             ContextCompat.getDrawable(requireContext(), R.drawable.ic_another_empty_star)
         val halfStar =
@@ -159,7 +159,7 @@ class DetailInfoFragment : Fragment() {
         }
     }
 
-    private fun addFeedback(item: ItemEntity, infoBinding: FirstPartDetailInfoBinding) {
+    private fun addFeedback(item: com.example.domain.domain.entities.ItemEntity, infoBinding: FirstPartDetailInfoBinding) {
         val word = when {
             item.feedback.count % 10 == 1 && item.feedback.count % 100 != 11 -> "отзыв"
             item.feedback.count % 10 in 2..4 && item.feedback.count % 100 !in 12..14 -> "отзыва"
@@ -172,7 +172,7 @@ class DetailInfoFragment : Fragment() {
         )
     }
 
-    private fun addAvailableItem(item: ItemEntity, infoBinding: FirstPartDetailInfoBinding) {
+    private fun addAvailableItem(item: com.example.domain.domain.entities.ItemEntity, infoBinding: FirstPartDetailInfoBinding) {
         val word = when {
             item.available % 10 == 1 && item.available % 100 != 11 -> "штука"
             item.available % 10 in 2..4 && item.available % 100 !in 12..14 -> "штуки"
@@ -185,7 +185,7 @@ class DetailInfoFragment : Fragment() {
         )
     }
 
-    private fun addImageButtonHeart(item: ItemEntity, infoBinding: FirstPartDetailInfoBinding) {
+    private fun addImageButtonHeart(item: com.example.domain.domain.entities.ItemEntity, infoBinding: FirstPartDetailInfoBinding) {
         viewModel.favouriteItems.observe(viewLifecycleOwner) {
             if (item in it.items) {
                 val drawable = ContextCompat.getDrawable(requireContext(), R.drawable.ic_heart)
@@ -215,7 +215,7 @@ class DetailInfoFragment : Fragment() {
     }
 
 
-    private fun addImageSlider(item: ItemEntity, infoBinding: FirstPartDetailInfoBinding) {
+    private fun addImageSlider(item: com.example.domain.domain.entities.ItemEntity, infoBinding: FirstPartDetailInfoBinding) {
         val imageList = HashMap<String, List<SlideModel>>()
         val slider1 = listOf(SlideModel(R.drawable.img_5), SlideModel(R.drawable.img_4))
         val slider2 = listOf(SlideModel(R.drawable.img), SlideModel(R.drawable.img_1))

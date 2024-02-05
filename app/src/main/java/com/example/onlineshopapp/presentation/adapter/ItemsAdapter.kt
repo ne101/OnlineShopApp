@@ -9,18 +9,18 @@ import androidx.recyclerview.widget.ListAdapter
 import com.denzcoskun.imageslider.models.SlideModel
 import com.example.onlineshopapp.R
 import com.example.onlineshopapp.databinding.ItemCardBinding
-import com.example.onlineshopapp.domain.entities.ItemEntity
+import com.example.domain.domain.entities.ItemEntity
 
 
 interface OnClickListener {
-    fun onHeartClickAdd(item: ItemEntity)
-    fun onHeartClickRemove(item: ItemEntity)
-    fun checkItemInDBOrNot(item: ItemEntity): Boolean
-    fun onItemClick(item: ItemEntity)
+    fun onHeartClickAdd(item: com.example.domain.domain.entities.ItemEntity)
+    fun onHeartClickRemove(item: com.example.domain.domain.entities.ItemEntity)
+    fun checkItemInDBOrNot(item: com.example.domain.domain.entities.ItemEntity): Boolean
+    fun onItemClick(item: com.example.domain.domain.entities.ItemEntity)
 }
 
 class ItemsAdapter(private val heartClickListener: OnClickListener) :
-    ListAdapter<ItemEntity, ItemsViewHolder>(ItemsDiffCallBack()) {
+    ListAdapter<com.example.domain.domain.entities.ItemEntity, ItemsViewHolder>(ItemsDiffCallBack()) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemsViewHolder {
         val binding = ItemCardBinding.inflate(
             LayoutInflater.from(parent.context),
